@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+:root{
+    font-family: 'Supermercado One', cursive;
+}
+body{
+    margin: 0px;
+    background-color: white;
+}
+.topico_item img{
+    width: 30px;
+}
+.cabecalho{
+    display: flex;
+    background-color: #121318;
+    justify-content: space-between;
+    align-items: center;
+}
+.cabecalho h1,a{
+    text-decoration: none;
+    color: white;
+}
+.cabecalho h1{
+    font-size: 40px;
+    padding-left: 40px;
+}
+.cabecalho a{
+    font-size: 20px;
+    width: 60px;
+    height: auto;
+    margin-right: 40px;
+    padding-top: 100%;
+    padding-bottom: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.cabecalho a:hover{
+    background-color: white;
+    color: #121318;
+    transition: 500ms;
+}
+.box{
+    place-items:center;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top:40px;
+    justify-items: center;
+    max-width: 1280px;
+}
+.c2{
+    margin: 0px;
+    padding: 40px;
+}
+.c2 p{
+    text-align: left;
+}
+.c3{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.c3 a{
+    height: 90px;
+    width: 330px;
+    padding-left: 15px;
+    color: #121318;
+    font-size: 70px;
+    border: 4px solid #121318;
+    border-radius: 15px;
+}
+
+a:hover{
+    background-color: #121318;
+    color: white;
+    transition: 500ms;
+}
+.c4{
+    margin: 70px;
+}
+.topico_item{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 20px;
+    padding: 5px;
+}
+.topico_item h3{
+    margin: 5px;
+}
+.topico_item p{
+    margin: 5px;
+    padding: 0px;
+    grid-column: 2;
+
+}
+footer{
+    padding: 10px;
+    background-color: #121318;
+    text-align: center;
+    color: white;
+}
