@@ -45,12 +45,16 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top:40px;
+    margin-left: auto;
+    margin-right: auto;
     justify-items: center;
     max-width: 1280px;
 }
+.c1 img{
+    max-width: 100%;
+}
 .c2{
-    margin: 0px;
-    padding: 40px;
+    padding-top: 20%;
 }
 .c2 p{
     text-align: left;
@@ -91,7 +95,6 @@ a:hover{
     margin: 5px;
     padding: 0px;
     grid-column: 2;
-
 }
 footer{
     padding: 10px;
