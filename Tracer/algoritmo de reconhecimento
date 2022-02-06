@@ -59,7 +59,7 @@ for c in cnts:
     # ORDEM DE CONTORNOS, ÁREAS DA CAIXA DE CONTORNO
     box = perspective.order_points(box)
     cv2.drawContours(orig, [box.astype("int")], -1, (0, 255, 0), 2)
-    
+    alturaOBJ = 3,93
 ################CALCULO DE PIXEL POR MÉTRICA#############################
     if pixels_per_metric is None:
         (tl, tr, br, bl) = box
@@ -110,22 +110,20 @@ for c in cnts:
         cv2.circle(orig, extTop, 8, (255, 255, 0), -1)
         cv2.circle(orig, extDown, 7, (255, 255, 255), -1)
         cv2.circle(orig, centre, 8, (255, 255, 0), -1)
-
-        # Calculate the dimensions of the T-shirt! (width, height, and the dimensions of the sleeve)
-        outfit_width = widx / pixels_per_metric * 2
-        outfit_height = widy / pixels_per_metric * 2
+##############CALCULA AS DIMENSÕES DO OBJETO###############################
+        largura = widx / pixels_per_metric * 2
+        comprimento = widy / pixels_per_metric * 2
         
-        sleevedist = dist.euclidean(leftSleeve_top, leftSleeve_bottom)
-        outfit_sleeve = sleevedist / pixels_per_metric
-        
-        # print the measurements
-        print(F"T-shirt width: {outfit_width} inches")
-        print(F"T-shirt height: {outfit_height} inches")
-        print(F"T-shirt sleeve: {outfit_sleeve} inches")
-        
-        # Draw and label the measurements on the T-shirt image
+##############EXIBE OS RESULTADOS ##########################################
+        print(F"T-shirt width: {largura} cm")
+        print(F"T-shirt height: {comprimento} cm")
+        comprimento = 2.54 * comprimento
+        largura = 2.54 * largura
+        altura = 2.54 * alturaOBJ
+        volume = comprimento * largura * altura
+        print(F"T-shirt height: {volume} cm")
+##############EXIBE OS RESULTADOS NA IMAGEM##########################################
         displaypoint = midpoint(leftSleeve_top, leftSleeve_bottom)
-        
         cv2.arrowedLine(blank_image, (int(centre[0] - widx), int(centre[1]+widy+60)), (int(centre[0] + widx), int(centre[1]+widy+60)),
                      (0, 0, 0), 2, tipLength=0.05)
         cv2.arrowedLine(blank_image,
@@ -137,18 +135,13 @@ for c in cnts:
         cv2.arrowedLine(blank_image,  (int(centre[0] + widx + 150), int(centre[1] + widy)),
                         (int(centre[0] + widx + 150), int(centre[1] - widy)),
                         (0, 0, 0), 2, tipLength=0.05)
-
-        cv2.putText(blank_image, "{:.1f}in (sleeve)".format(outfit_sleeve),
-                    (int(displaypoint[0]-180), int(displaypoint[1])), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.65, (0, 0, 0), 2)
-        cv2.putText(blank_image, "{:.1f}in (width)".format(outfit_width),
+     
+        cv2.putText(blank_image, "{:.1f}in (width)".format(largura),
                     (int(extDown[0]), int(extDown[1] + 25)), cv2.FONT_HERSHEY_SIMPLEX,
                     0.65, (0, 0, 0), 2)
-
-        cv2.putText(blank_image, "{:.1f}in (height)".format(outfit_height),
+        cv2.putText(blank_image, "{:.1f}in (height)".format(comprimento),
                     (int(extBotRight[0] + 10), int(extBotRight[1])), cv2.FONT_HERSHEY_SIMPLEX,
                     0.65, (0, 0, 0), 2)
-        
         plt.imshow(blank_image)
         plt.show()
         
